@@ -3,7 +3,6 @@ import { useTrafficLight } from "../../../contexts/TrafficLightContext"
 import { mainColor } from "../../../constants/colors";
 import { useEffect, useState } from "react";
 import dayjs from "dayjs";
-import TrafficLightItem from "../../../components/TrafficLightItem";
 import { Tooltip } from "@material-ui/core"
 import { useNavigate } from "react-router-dom";
 import pedestrian_in_crosswalk from "../../../assets/images/PedestrianInCrosswalk.gif"
@@ -28,91 +27,6 @@ export default function Display2() {
     return (
         <>
             <DisplayContainer>
-
-                {selectedTrafficLight === undefined ?
-                <>
-                <Title>Planos Semafóricos atuais</Title>
-                <ItemSeparator/>
-                <Item>
-                <p>ID</p>
-                <p>Nome do semáforo</p>
-                <p>Plano</p>
-                </Item>
-                <ItemSeparator/>
-                {trafficLights.map((trafficLight)=> <TrafficLightItem key={trafficLight.id} id={trafficLight.id} trafficLight={trafficLight} type={1}></TrafficLightItem>)}
-                </>
-                :
-                <>
-                <Title>Pedestres: {selectedTrafficLight.name}</Title>
-                <p>Horário da informação: {date}</p>
-                <Tooltip arrow placement="top" title={<>Simulação ilustrativa <br/> <img src={pedestrian_in_crosswalk} width="280px" alt="pedestrian" /></>}>
-                <TextIcon>
-                    <img src="https://static.thenounproject.com/png/35166-200.png" width="30px" alt="pedestrian" />
-                    <p>Quantidade máxima na área de influência da faixa de pedestres: {selectedTrafficLight.maxPedestrianInCrosswalk} pedestres</p>
-                </TextIcon>
-                </Tooltip>
-                <Tooltip arrow placement="top" title={<>Simulação ilustrativa <br/> <img src={pedestrian_on_sidewalk_red} width="280px" alt="pedestrian"/></>}>
-                <TextIcon>
-                    <img src="https://cdn-icons-png.flaticon.com/512/32/32441.png" width="30px" alt="waiting" />
-                    <p>Quantidade máxima que aguardou na área de espera com semáforo fechado para pedestres: {selectedTrafficLight.maxPedestrianOnSidewalk} pedestres</p>
-                </TextIcon>
-                </Tooltip>
-                <Tooltip arrow placement="top" title={<>Simulação ilustrativa <br/> <img src={pedestrian_on_sidewalk_red} width="280px" alt="pedestrian"/></>}>
-                <TextIcon>
-                    <img src="https://cdn0.iconfinder.com/data/icons/zeir-miscellaneous-013/64/waiting_wait_in_process-512.png" width="30px" alt="waiting" />
-                    <p>Tempo médio de espera na área de espera com semáforo vermelho para pedestres: {selectedTrafficLight.avgWaitingTime_Red} segundos</p>
-                </TextIcon>
-                </Tooltip>
-                <MoreButton onClick={()=>{
-                navigate(`/pedestrian`);
-                }}
-                >Acessar mais informações sobre pedestres do semáforo {selectedTrafficLight.name}</MoreButton>
-
-{/*                 <PedestrianInfoContainer>
-                <div>
-                    <div>Quantidade máxima na área de influência da faixa de pedestres</div>
-                    <div>{selectedTrafficLight.maxPedestrianInCrosswalk} pedestres</div>
-                </div>
-                <div>
-                    <div>Quantidade média atravessando fora da faixa de pedestres com semáforo aberto para pedestres</div>
-                    <div>{selectedTrafficLight.numPedestrianOutCrosswalk_Green} pedestres</div>
-                </div>
-                <div>
-                    <div>Quantidade média atravessando fora da faixa de pedestres com semáforo fechado para pedestres</div>
-                    <div>{selectedTrafficLight.numPedestrianOutCrosswalk_Red } pedestres</div>
-                </div>
-                <div>
-                    <div>Quantidade média que aguardou na área de espera com semáforo fechado para pedestres</div>
-                    <div>{selectedTrafficLight.numPedestrianOnSidewalk} pedestres</div>
-                </div>
-                <div>
-                    <div>Quantidade máxima que aguardou na área de espera com semáforo fechado para pedestres</div>
-                    <div>{selectedTrafficLight.maxPedestrianOnSidewalk } pedestres</div>
-                </div>
-                <div>
-                    <div>Quantidade média na calçada fora da área de espera</div>
-                    <div>{selectedTrafficLight.numPedestrianWalkingOnSideWalk} pedestres</div>
-                </div>
-                <div>
-                    <div>Quantidade média na faixa de pedestres com semáforo aberto para pedestres</div>
-                    <div>{selectedTrafficLight.numPedestrianInCrosswalk_Green} pedestres</div>
-                </div>
-                <div>
-                    <div>Quantidade média na faixa de pedestres com semáforo fechado para pedestres</div>
-                    <div>{selectedTrafficLight.numPedestrianInCrosswalk_Red} pedestres</div>
-                </div>
-                <div>
-                    <div>Tempo médio de espera na área de espera com semáforo verde para pedestres</div>
-                    <div>{selectedTrafficLight.avgWaitingTime_Green } segundos</div>
-                </div>
-                <div>
-                    <div>Tempo médio de espera na área de espera com semáforo vermelho para pedestres</div>
-                    <div>{selectedTrafficLight.avgWaitingTime_Red} segundos</div>
-                </div>
-                </PedestrianInfoContainer> */}
-                {/* <BackButton onClick={()=> setSelectedTrafficLight(undefined)}>Return</BackButton> */}
-                </>
-                }
            
            </DisplayContainer>
             

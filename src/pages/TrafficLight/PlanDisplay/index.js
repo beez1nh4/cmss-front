@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import TrafficLightItem from "../../../components/TrafficLightItem"
 import { useTrafficLight } from "../../../contexts/TrafficLightContext"
 import { mainColor } from "../../../constants/colors";
 import Rings from "../../../components/Rings";

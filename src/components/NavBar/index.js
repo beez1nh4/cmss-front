@@ -13,7 +13,7 @@ export default function NavBar() {
             <Title onClick={()=>{
                 navigate(`/`);
                 setChosenTrafficLight(undefined);
-                }}>Semáforos: Monitoramento </Title>
+                }}>Tracking: Sentinels </Title>
         </NavBarItem>
     )
 }
@@ -36,7 +36,7 @@ const NavBarItem = styled.div`
     }
 `
 const Title = styled.div`
-    color: white;
+    color: #000000ff;
     font-size: 25px;
     font-weight: bold;
     margin-left: 10px;

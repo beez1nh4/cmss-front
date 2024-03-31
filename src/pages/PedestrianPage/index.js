@@ -5,8 +5,6 @@ import { useTrafficLight } from "../../contexts/TrafficLightContext";
 import dayjs from "dayjs";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
-import ClockDisplay from "./ClockDisplay";
-import CrosswalkDisplay from "./CrossWalkDisplay";
 
 //page with pedestrian info
 export default function PedestrianPage() {
@@ -39,8 +37,6 @@ export default function PedestrianPage() {
         <>
             <NavBar color={color} />
             <Content>
-                <ClockDisplay/>
-                <CrosswalkDisplay/>
             </Content>
         </>
 

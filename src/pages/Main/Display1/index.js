@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import TrafficLightItem from "../../../components/TrafficLightItem"
 import { useTrafficLight } from "../../../contexts/TrafficLightContext"
 import { mainColor } from "../../../constants/colors";
 import { useEffect, useState } from "react";
@@ -19,7 +18,7 @@ export default function Display1() {
 
     //const promise = axios.get(process.env.REACT_APP_API_BASE_URL + '/pedestrian/b27edc2baccd0826');
     //const promise = axios.get(process.env.REACT_APP_API_BASE_URL + '/pedestrian/d2c79348ec4542e1');
-    const promise = axios.get(process.env.REACT_APP_API_BASE_URL + '/pedestrian/42a890f441adf18b');
+    /* const promise = axios.get(process.env.REACT_APP_API_BASE_URL + '/pedestrian/42a890f441adf18b');
 
     promise.then((res) => {
         console.log(res.data[0]);
@@ -29,7 +28,7 @@ export default function Display1() {
 
     promise.catch((err) => {
         console.log('err', err.response.data);
-    });
+    }); */
 
     useEffect(() => {
         if (selectedTrafficLight !== undefined){
@@ -48,29 +47,6 @@ export default function Display1() {
         <>
             <DisplayContainer>
 
-                {selectedTrafficLight === undefined ?
-                <>
-                <Title>Semáforos ativos</Title>
-                <ItemSeparator/>
-                {trafficLights.map((trafficLight)=> <TrafficLightItem key={trafficLight.id} id={trafficLight.id} trafficLight={trafficLight} type={0}></TrafficLightItem>)}
-                </>
-                :
-                <>
-                <Title>{selectedTrafficLight.name}</Title>
-                <p>{date}</p>
-                <StatusContainer>
-                <ItemColor color={color}/>
-                <p>Status: {meaning}</p>
-                </StatusContainer>
-                <p>  • Plano Semafórico atual: Plano {selectedTrafficLight.plan}</p>
-                <MoreButton onClick={()=>{
-                navigate(`/trafficlight/${selectedTrafficLight.name}`);
-                setChosenTrafficLight(selectedTrafficLight);
-                }}
-                >Acessar plano semafórico e informações mais detalhadas do semáforo {selectedTrafficLight.name}</MoreButton>
-                <BackButton onClick={()=> setSelectedTrafficLight(undefined)}>Voltar à lista de semáforos ativos</BackButton>
-                </>
-                }
            
            </DisplayContainer>
             
