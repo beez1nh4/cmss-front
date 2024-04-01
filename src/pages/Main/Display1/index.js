@@ -13,24 +13,26 @@ export default function Display1() {
 
     const [color, setColor] = useState(notificationTypes[1].color)
     const [meaning, setMeaning] = useState(notificationTypes[1].meaning)
+    const [notifications, setNotifications] = useState([]);
     const [date, setDate] = useState("")
     const navigate = useNavigate();
 
     //const promise = axios.get(process.env.REACT_APP_API_BASE_URL + '/pedestrian/b27edc2baccd0826');
     //const promise = axios.get(process.env.REACT_APP_API_BASE_URL + '/pedestrian/d2c79348ec4542e1');
-    /* const promise = axios.get(process.env.REACT_APP_API_BASE_URL + '/pedestrian/42a890f441adf18b');
-
-    promise.then((res) => {
-        console.log(res.data[0]);
-        console.log('start', res.data[0].start_time)
-        console.log('end', res.data[0].start_time+900)
-    });
-
-    promise.catch((err) => {
-        console.log('err', err.response.data);
-    }); */
 
     useEffect(() => {
+/*         const promise = axios.get(process.env.REACT_APP_API_BASE_URL + '/notification');
+
+        promise.then((res) => {
+            console.log(res.data);
+            setNotifications(res.data);
+        });
+    
+        promise.catch((err) => {
+            console.log('err', err.response.data);
+        });
+ */
+
         if (selectedTrafficLight !== undefined){
             const notification = notificationTypes.find((type) => type.id === selectedTrafficLight.notificationType);
             setColor(notification.color);
@@ -46,9 +48,9 @@ export default function Display1() {
     return (
         <>
             <DisplayContainer>
-
-           
-           </DisplayContainer>
+                <Title>Vehicles</Title>
+{/*                 <p>{notifications[0].notification_object.events[0].type}</p>
+ */}           </DisplayContainer>
             
         </>
         
@@ -58,7 +60,7 @@ export default function Display1() {
 
 const DisplayContainer = styled.div`
     display: block;
-    height: 400px;
+    height: 86vh;
     width: 600px;
     padding: 25px;
     margin: 20px;

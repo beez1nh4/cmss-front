@@ -12,15 +12,12 @@ export default function MainPage() {
         <>
             <NavBar/>
             <Content>
-            <Container>
-                <Title>Mapa de semáforos</Title>
-                <TrafficLightsMap/>
-            </Container>
             <DisplayContainer>
                 <Display1/>
-                <Display2/>
             </DisplayContainer>
-            
+            <Container>
+                <Display2/>
+            </Container>  
             </Content>
                
         </>      
@@ -59,6 +56,7 @@ const Content = styled.div`
 
 const DisplayContainer = styled.div`
     display: block;
+    margin-left: 20px;
 
     @media (max-width: 900px) {
       height: calc(100vh - 80px);
