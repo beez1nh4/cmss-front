@@ -7,6 +7,8 @@ import dayjs from "dayjs";
 import "dayjs/locale/pt-br";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import SentinelItem from "../../../components/SentinelItem";
+import { sentinels_labels } from "../../../constants/sentinelsLabels";
 
 export default function Display1() {
     const {trafficLights, selectedTrafficLight, setSelectedTrafficLight, setChosenTrafficLight} = useTrafficLight();
@@ -49,8 +51,14 @@ export default function Display1() {
         <>
             <DisplayContainer>
                 <Title>Vehicles</Title>
-{/*                 <p>{notifications[0].notification_object.events[0].type}</p>
- */}           </DisplayContainer>
+                <StatusContainer>
+                    <p>Sentinel</p>
+                    <p>didDocument</p>
+                    <p>Vehicle</p>
+                </StatusContainer>
+                <ItemSeparator/>
+                {sentinels_labels.map((sentinel)=> <SentinelItem key={sentinel.sentinel_id} id={sentinel.sentinel_id} sentinel={sentinel} ></SentinelItem>)}
+           </DisplayContainer>
             
         </>
         
@@ -64,7 +72,7 @@ const DisplayContainer = styled.div`
     width: 600px;
     padding: 25px;
     margin: 20px;
-    margin-left: 0px;
+    margin-right: 20px;
     background-color: white;
     border-radius: 15px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
@@ -162,6 +170,6 @@ const ItemColor = styled.div`
 `
 const StatusContainer = styled.div`
     display: flex;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    justify-content: space-between;
+    font-weight: bold;
 `

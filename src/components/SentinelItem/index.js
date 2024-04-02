@@ -1,16 +1,14 @@
 import dayjs from "dayjs"
 import styled from "styled-components"
 
-export default function NotificationItem({notification}) {
-    console.log('notif', notification)
+export default function SentinelItem({sentinel}) {
     return(
         <>
             <HoverDiv>
             <StatusContainer>
-                    <p>{dayjs(notification.server_timestamp).format('DD/MM - HH:mm:ss')}</p>
-                    <p>{notification.remote.didDocument.id}</p>
-                    <p>{notification.notification_object.events[0].type}</p>
-                    <p>{notification.notification_object.events[0].accuracy}</p>
+                    <p>{sentinel.sentinel_id}</p>
+                    <p>{sentinel.didDocument}</p>
+                    <p>{sentinel.vehicle}</p>
             </StatusContainer>
             <ItemSeparator/>
             </HoverDiv>
