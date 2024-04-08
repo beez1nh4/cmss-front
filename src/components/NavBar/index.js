@@ -2,6 +2,7 @@ import styled from "styled-components"
 import { mainColor } from "../../constants/colors"
 import { useSentinel } from "../../contexts/SentinelContext";
 import { useNavigate } from "react-router-dom";
+import logo from "../../assets/images/69012384.png"
 
 export default function NavBar() {
 
@@ -10,10 +11,11 @@ export default function NavBar() {
 
     return (
         <NavBarItem>
+            <img src={logo} alt="logo" width="40px"/>
             <Title onClick={()=>{
                 navigate(`/`);
                 setSelectedSentinel(undefined);
-                }}>Tracking: Sentinels </Title>
+                }}>CMSS Tracking: Sentinels </Title>
         </NavBarItem>
     )
 }
@@ -27,7 +29,7 @@ const NavBarItem = styled.div`
     z-index: 1000;
     padding: 15px;
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
     align-items: center;
     @media (max-width: 900px) {
       height: calc(10vh);
