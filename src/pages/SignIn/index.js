@@ -3,10 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Label, Row } from "../../components/Auth";
 import Input from "../../components/Form/Input";
 import Button from "../../components/Form/Button";
-import tf1 from "../../assets/images/greentf.png"
-import tf2 from "../../assets/images/pedestriangreentf.png"
-import tf3 from "../../assets/images/pedestrianredtf.png"
-import tf4 from "../../assets/images/redtf.png"
+
 
 //page for authentication
 export default function SignInPage() {
@@ -48,10 +45,7 @@ export default function SignInPage() {
           </Button>          
         </form>
       </Row>
-      <img src={tf1} height="100px" alt=""/>
-      <img src={tf2}height="50px" alt=""/>
-      <img src={tf3}height="50px" alt=""/>
-      <img src={tf4}height="85px" alt=""/>
+
     </>
   );
 }

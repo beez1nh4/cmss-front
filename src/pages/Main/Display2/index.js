@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { useTrafficLight } from "../../../contexts/TrafficLightContext"
+import { useSentinel } from "../../../contexts/SentinelContext";
 import { mainColor } from "../../../constants/colors";
 import { useEffect, useState } from "react";
 import { notificationTypes } from "../../../constants/subtitles";
@@ -10,7 +10,7 @@ import axios from "axios";
 import NotificationItem from "../../../components/NotificationItem";
 
 export default function Display2() {
-    const {trafficLights, selectedTrafficLight, setSelectedTrafficLight, setChosenTrafficLight} = useTrafficLight();
+    const {sentinels, selectedSentinel, setSelectedSentinel} = useSentinel();
 
     const [color, setColor] = useState(notificationTypes[1].color)
     const [meaning, setMeaning] = useState(notificationTypes[1].meaning)
@@ -34,17 +34,17 @@ export default function Display2() {
         });
 
 
-        if (selectedTrafficLight !== undefined){
-            const notification = notificationTypes.find((type) => type.id === selectedTrafficLight.notificationType);
+        if (selectedSentinel !== undefined){
+            const notification = notificationTypes.find((type) => type.id === selectedSentinel.notificationType);
             setColor(notification.color);
             setMeaning(notification.meaning);
 
-            const convertDate = dayjs.unix(selectedTrafficLight.timestamp);
+            const convertDate = dayjs.unix(selectedSentinel.timestamp);
             const dateBR = dayjs(convertDate).locale('pt-BR').format('dddd, DD/MM, YYYY, HH:mm:ss');
             setDate(dateBR[0].toUpperCase() + dateBR.substring(1));
 
         }
-    }, [selectedTrafficLight])
+    }, [selectedSentinel])
 
     return (
         <>

@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 
 import './assets/styles/reset.css';
 import './assets/styles/style.css';
-import { TrafficLightProvider } from './contexts/TrafficLightContext';
+import { SentinelProvider } from './contexts/SentinelContext';
 import { AuthProvider } from './contexts/AuthContext';
 
 const container = document.getElementById('root');
@@ -13,8 +13,8 @@ const root = createRoot(container);
 root.render(
 <React.StrictMode>
   <AuthProvider>
-  <TrafficLightProvider>
+  <SentinelProvider>
   <App />
-  </TrafficLightProvider>
+  </SentinelProvider>
   </AuthProvider>
 </React.StrictMode>,);

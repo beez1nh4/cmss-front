@@ -1,26 +1,26 @@
 import { Marker, Popup } from "react-leaflet";
-import { useTrafficLight } from "../../contexts/TrafficLightContext";
+import { useSentinel } from "../../contexts/SentinelContext";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 export default function Markers() {
     
-    const {trafficLights, setSelectedTrafficLight, setChosenTrafficLight} = useTrafficLight();
+    const {sentinels, setSelectedSentinel} = useSentinel();
     const navigate = useNavigate();
 
     return (
         <>
-        {trafficLights.map((trafficLight)=> <Marker 
-        key={trafficLight.id} 
-        id={trafficLight.id} 
-        position={trafficLight.position} 
-        eventHandlers={{click: (e) => { setSelectedTrafficLight(trafficLight)}}}
+        {sentinels.map((sentinel)=> <Marker 
+        key={sentinel.id} 
+        id={sentinel.id} 
+        position={sentinel.position} 
+        eventHandlers={{click: (e) => { setSelectedSentinel(sentinel)}}}
         ><Popup 
-        >{trafficLight.name} <MoreInfoParagraph onClick={()=>{
-            navigate(`/trafficlight/${trafficLight.name}`);
-            setChosenTrafficLight(trafficLight);
+        >{sentinel.name} <MoreInfoParagraph onClick={()=>{
+            navigate(`/sentinel/${sentinel.name}`);
+            setSelectedSentinel(sentinel);
             }}>Ver mais informações</MoreInfoParagraph> 
-            <img src={trafficLight.image} width="150px" alt="traffic_image" />
+            <img src={sentinel.image} width="150px" alt="sentinel_image" />
             </Popup></Marker>)}
         </>
     )

@@ -1,18 +1,18 @@
 import styled from "styled-components"
 import { mainColor } from "../../constants/colors"
-import { useTrafficLight } from "../../contexts/TrafficLightContext";
+import { useSentinel } from "../../contexts/SentinelContext";
 import { useNavigate } from "react-router-dom";
 
 export default function NavBar() {
 
     const navigate = useNavigate();
-    const {setChosenTrafficLight} = useTrafficLight();
+    const {setSelectedSentinel} = useSentinel();
 
     return (
         <NavBarItem>
             <Title onClick={()=>{
                 navigate(`/`);
-                setChosenTrafficLight(undefined);
+                setSelectedSentinel(undefined);
                 }}>Tracking: Sentinels </Title>
         </NavBarItem>
     )
