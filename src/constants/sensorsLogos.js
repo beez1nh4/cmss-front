@@ -9,7 +9,7 @@ import img_camera from '../assets/images/camera.png';
 import img_license_plate from '../assets/images/license_plate.png';
 
 
-const SensorsLogos = {
+export const SensorsLogos = {
     "AIRBAG": img_airbag,
     "SEATBELT_BUCKLE": img_seatbelt,
     "SEATBELT_TENSIONER": img_seatbelt,
@@ -21,5 +21,3 @@ const SensorsLogos = {
     "CAMERA": img_camera,
     "PLATE_RELATIVE_POSITION": img_license_plate,
 }
-
-export default EventLogos;
