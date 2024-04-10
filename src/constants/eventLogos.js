@@ -4,9 +4,9 @@ import img_flood from '../assets/event-flood.png';
 import img_gun from '../assets/event-gun.png';
 import img_kidnapping from '../assets/event-kidnapping.png';
 import img_forgotten_baby from '../assets/images/forgotten-baby.png';
-import img_license_plate from '../assets/images/licence_plate.png'
+import img_license_plate from '../assets/images/license_plate.png'
 
-const EventLogos = {
+export const EventLogos = {
     "VEHICLE_ACCIDENT": img_accident,
     "CROWDING": img_crowd,
     "FLOOD": img_flood,
@@ -15,5 +15,3 @@ const EventLogos = {
     "FORGOTTEN_BABY": img_forgotten_baby,
     "LICENSE_PLATE": img_license_plate,
 }
-
-export default EventLogos;
