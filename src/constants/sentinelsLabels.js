@@ -102,6 +102,10 @@ export const sentinels_labels =  [
     didDocument: "did:sw:5WLpgbcMbjFwWWvTzUbiNP",
     vehicle: "M-07215",
     },
+
+    {sentinel_id: 26,
+    didDocument: "did:sw:41HCmgmbm8BHXHRg7QLGsP",
+    vehicle: "T-01136"},
     
     {sentinel_id: 27,
     didDocument: "did:sw:8vcbwRuX1jtfYzwuzJq6Eq",

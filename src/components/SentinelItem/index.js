@@ -1,7 +1,9 @@
 import dayjs from "dayjs"
 import styled from "styled-components"
+import swal from "sweetalert";
 
 export default function SentinelItem({sentinel}) {
+
     return(
         <>
             <HoverDiv>

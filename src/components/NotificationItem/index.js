@@ -1,13 +1,31 @@
 import dayjs from "dayjs"
 import styled from "styled-components"
+import swal from "sweetalert";
+import { sentinels_labels } from "../../constants/sentinelsLabels";
+import { useEffect, useState } from "react";
 
 export default function NotificationItem({notification}) {
-    console.log('notif', notification)
+    const [sentinel, setSentinel] = useState({sentinel_id: 0, didDocument: "did", vehicle: "NA"});
+
+    useEffect(() => {
+        if (sentinels_labels.find((sentinel) => sentinel.didDocument === notification.remote.didDocument.id)){
+            setSentinel(sentinels_labels.find((sentinel) => sentinel.didDocument === notification.remote.didDocument.id))
+        }
+    }, [sentinel])
+    
+    async function searchSentinel(notification){
+        const sentinel = sentinels_labels.find((sentinel) => sentinel.didDocument === notification.remote.didDocument.id);
+        swal({
+            title: sentinel,
+          });
+    }
+
     return(
         <>
-            <HoverDiv>
+            <HoverDiv onClick={() => searchSentinel(notification)}>
             <StatusContainer>
                     <p>{dayjs(notification.server_timestamp).format('DD/MM - HH:mm:ss')}</p>
+                    <p>{sentinel.vehicle}</p>
                     <p>{notification.remote.didDocument.id}</p>
                     <p>{notification.notification_object.events[0].type}</p>
                     <p>{notification.notification_object.events[0].accuracy}</p>
