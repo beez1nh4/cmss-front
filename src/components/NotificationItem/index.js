@@ -3,20 +3,28 @@ import styled from "styled-components"
 import swal from "sweetalert";
 import { sentinels_labels } from "../../constants/sentinelsLabels";
 import { useEffect, useState } from "react";
+import { EventLogos } from "../../constants/eventLogos";
 
 export default function NotificationItem({notification}) {
     const [sentinel, setSentinel] = useState({sentinel_id: 0, didDocument: "did", vehicle: "NA"});
+    const [logo, setLogo] = useState()
 
     useEffect(() => {
         if (sentinels_labels.find((sentinel) => sentinel.didDocument === notification.remote.didDocument.id)){
             setSentinel(sentinels_labels.find((sentinel) => sentinel.didDocument === notification.remote.didDocument.id))
+            setLogo(EventLogos[notification.notification_object.events[0].type])
         }
-    }, [sentinel])
+        
+    }, [sentinel, notification.remote.didDocument.id, notification.notification_object.events])
     
     async function searchSentinel(notification){
         const sentinel = sentinels_labels.find((sentinel) => sentinel.didDocument === notification.remote.didDocument.id);
         swal({
-            title: sentinel,
+            
+            title: `Sentinel ${sentinel.sentinel_id}`,
+            text: `Type: ${notification.notification_object.events[0].type}
+            Confidence: ${notification.notification_object.events[0].accuracy}`,
+            content:`<img src=${EventLogos.crowding} alt=${EventLogos.crowding} />`,
           });
     }
 
@@ -24,11 +32,14 @@ export default function NotificationItem({notification}) {
         <>
             <HoverDiv onClick={() => searchSentinel(notification)}>
             <StatusContainer>
+
+                    <img src={logo} height={"20px"} width={"20px"} alt={EventLogos.crowding} />
                     <p>{dayjs(notification.server_timestamp).format('DD/MM - HH:mm:ss')}</p>
                     <p>{sentinel.vehicle}</p>
                     <p>{notification.remote.didDocument.id}</p>
                     <p>{notification.notification_object.events[0].type}</p>
                     <p>{notification.notification_object.events[0].accuracy}</p>
+                    
             </StatusContainer>
             <ItemSeparator/>
             </HoverDiv>
