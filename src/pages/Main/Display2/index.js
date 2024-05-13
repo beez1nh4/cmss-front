@@ -50,8 +50,9 @@ export default function Display2() {
         <>
                 <Title>Notifications</Title>
                 <StatusContainer>
-                    <p>Date & Time</p>
+                    <SpecialP>Date & Time</SpecialP>
                     <p>Id</p>
+                    <SpecialP>didDocument</SpecialP>
                     <SpecialP>Type</SpecialP>
                     <p>Confidence</p>
                 </StatusContainer>
@@ -173,5 +174,5 @@ const StatusContainer = styled.div`
     font-weight: bold;
 `
 const SpecialP = styled.div`
-    margin-left: 130px;
+    margin-left: 90px;
 `
