@@ -21,7 +21,7 @@ export default function NotificationItem({notification}) {
             if(notification.notification_object.events[0].triggered_sensors[0].type){
                 setSensor(SensorsLogos[notification.notification_object.events[0].triggered_sensors[0].type])
                 if(notification.notification_object.events[0].triggered_sensors[0].value){
-                    setPlate(notification.notification_object.events[0].triggered_sensors[0].value)
+                    setPlate(notification.notification_object.events[0].triggered_sensors[0].value.substring(0,3)+"-"+notification.notification_object.events[0].triggered_sensors[0].value.substring(3))
                 }
             }
 
@@ -41,7 +41,7 @@ export default function NotificationItem({notification}) {
 
             <p style="margin-top:10px; margin-bottom:20px"><strong>Confidence:</strong> ${notification.notification_object.events[0].accuracy}</p>
 
-            <img src=${sensor} height="30px" width="30px" alt="sensor_img"/>
+            <img src=${sensor} height="30px" alt="sensor_img"/>
             <p style="margin-top:20px;"><strong>Sensor type:</strong> ${notification.notification_object.events[0].triggered_sensors[0].type}</p>
         
             `,
