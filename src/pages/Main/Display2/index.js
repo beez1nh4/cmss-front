@@ -23,7 +23,7 @@ export default function Display2() {
 
     useEffect(() => {
         const promise = axios.get(process.env.REACT_APP_API_BASE_URL + '/notification');
-
+        //http://localhost:4000/notification/did:sw:3MCaQEkPdtfdiySyprzrym
         promise.then((res) => {
             console.log(res.data[0]);
             setNotifications(res.data);
