@@ -10,11 +10,10 @@ import axios from "axios";
 import NotificationItem from "../../../components/NotificationItem";
 
 export default function Display2() {
-    const {sentinels, selectedSentinel, setSelectedSentinel} = useSentinel();
+    const {sentinels, selectedSentinel, setSelectedSentinel, notifications, setNotifications} = useSentinel();
 
     const [color, setColor] = useState(notificationTypes[1].color)
     const [meaning, setMeaning] = useState(notificationTypes[1].meaning)
-    const [notifications, setNotifications] = useState([]);
     const [date, setDate] = useState("")
     const navigate = useNavigate();
 
@@ -25,7 +24,7 @@ export default function Display2() {
         const promise = axios.get(process.env.REACT_APP_API_BASE_URL + '/notification');
         //http://localhost:4000/notification/did:sw:3MCaQEkPdtfdiySyprzrym
         promise.then((res) => {
-            console.log(res.data[0]);
+            //console.log(res.data[0]);
             setNotifications(res.data);
         });
     

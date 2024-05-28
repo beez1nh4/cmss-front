@@ -11,42 +11,14 @@ import SentinelItem from "../../../components/SentinelItem";
 import { sentinels_labels } from "../../../constants/sentinelsLabels";
 
 export default function Display1() {
-    const {sentinels, selectedSentinel, setSelectedSentinel} = useSentinel();
+    const {sentinels, selectedSentinel, setSelectedSentinel, notifications, setNotifications} = useSentinel();
 
     const [color, setColor] = useState(notificationTypes[1].color)
     const [meaning, setMeaning] = useState(notificationTypes[1].meaning)
-    const [notifications, setNotifications] = useState([]);
     const [date, setDate] = useState("")
     const navigate = useNavigate();
 
-    //const promise = axios.get(process.env.REACT_APP_API_BASE_URL + '/pedestrian/b27edc2baccd0826');
-    //const promise = axios.get(process.env.REACT_APP_API_BASE_URL + '/pedestrian/d2c79348ec4542e1');
-
-    useEffect(() => {
-/*         const promise = axios.get(process.env.REACT_APP_API_BASE_URL + '/notification');
-
-        promise.then((res) => {
-            console.log(res.data);
-            setNotifications(res.data);
-        });
     
-        promise.catch((err) => {
-            console.log('err', err.response.data);
-        });
- */
-
-        if (selectedSentinel !== undefined){
-            const notification = notificationTypes.find((type) => type.id === selectedSentinel.notificationType);
-            setColor(notification.color);
-            setMeaning(notification.meaning);
-
-            const convertDate = dayjs.unix(selectedSentinel.timestamp);
-            const dateBR = dayjs(convertDate).locale('pt-BR').format('dddd, DD/MM, YYYY, HH:mm:ss');
-            setDate(dateBR[0].toUpperCase() + dateBR.substring(1));
-
-        }
-    }, [selectedSentinel])
-
     return (
         <>
             <DisplayContainer>
@@ -57,7 +29,7 @@ export default function Display1() {
                     <p>Vehicle</p>
                 </StatusContainer>
                 <ItemSeparator/>
-                {sentinels_labels.map((sentinel)=> <SentinelItem key={sentinel.sentinel_id} id={sentinel.sentinel_id} sentinel={sentinel} ></SentinelItem>)}
+                {sentinels_labels.map((sentinel)=> <SentinelItem key={sentinel.sentinel_id} id={sentinel.sentinel_id} sentinel={sentinel}></SentinelItem>)}
            </DisplayContainer>
             
         </>

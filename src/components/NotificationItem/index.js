@@ -34,7 +34,6 @@ export default function NotificationItem({notification}) {
         Swal.fire({
             
             title: `Sentinel ${sentinel.sentinel_id} - Vehicle ${sentinel.vehicle}`,
-            type: "info",
             html: `<p style="margin-top:20px;"><strong>Type:</strong> ${notification.notification_object.events[0].type}</p>
 
             <p style="margin-top:10px;"><strong>Value:</strong> ${plate}</p>

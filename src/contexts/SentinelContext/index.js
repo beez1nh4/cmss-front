@@ -8,6 +8,8 @@ export const SentinelProvider = (props) => {
   const [image, setImage] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png");
   const [selectedSentinel, setSelectedSentinel] = useState(undefined);
   const [getSentinel, setGetSentinel] = useState(false);
+  const [notifications, setNotifications] = useState([]);
+
 /*   const getCurrent = useGetCurrent();
   console.log(getCurrent) */
   const [sentinels, setSentinels] = useState([]);
@@ -21,7 +23,9 @@ export const SentinelProvider = (props) => {
       selectedSentinel,
       setSelectedSentinel,
       getSentinel,
-      setGetSentinel
+      setGetSentinel,
+      notifications,
+      setNotifications
       }}>
       {props.children}
     </SentinelsContext.Provider>
