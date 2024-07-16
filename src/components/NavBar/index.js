@@ -18,7 +18,6 @@ export default function NavBar() {
                 setSelectedSentinel(undefined);
                 const promise = axios.get(process.env.REACT_APP_API_BASE_URL + '/notification');
                 promise.then((res) => {
-                    //console.log(res.data[0]);
                     setNotifications(res.data);
                 });
             
@@ -41,6 +40,10 @@ const NavBarItem = styled.div`
     display: flex;
     justify-content: left;
     align-items: center;
+    :hover{
+        cursor: pointer;
+    };
+    
     @media (max-width: 900px) {
       height: calc(10vh);
       width: calc(100vh);
