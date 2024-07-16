@@ -19,7 +19,17 @@ export default function Display2() {
 
     //const promise = axios.get(process.env.REACT_APP_API_BASE_URL + '/pedestrian/b27edc2baccd0826');
     //const promise = axios.get(process.env.REACT_APP_API_BASE_URL + '/pedestrian/d2c79348ec4542e1');
-
+    const refresh = () => { 
+        const promise = axios.get(process.env.REACT_APP_API_BASE_URL + '/notification');
+        promise.then((res) => {
+            //console.log(res.data[0]);
+            setNotifications(res.data);
+        });
+    
+        promise.catch((err) => {
+            console.log('err', err.response.data);
+        });
+     }
     useEffect(() => {
         const promise = axios.get(process.env.REACT_APP_API_BASE_URL + '/notification');
         //http://localhost:4000/notification/did:sw:3MCaQEkPdtfdiySyprzrym
@@ -31,8 +41,7 @@ export default function Display2() {
         promise.catch((err) => {
             console.log('err', err.response.data);
         });
-
-
+           
         if (selectedSentinel !== undefined){
             const notification = notificationTypes.find((type) => type.id === selectedSentinel.notificationType);
             setColor(notification.color);
@@ -48,8 +57,10 @@ export default function Display2() {
     return (
         <>
                 <Title>Notifications</Title>
+                
                 <StatusContainer>
-                    <SpecialP>Date & Time</SpecialP>
+                    <FunctionP onClick={()=>refresh()}>⟳</FunctionP>
+                    <p>Date & Time</p>
                     <p>Id</p>
                     <SpecialP>didDocument</SpecialP>
                     <SpecialP>Type</SpecialP>
@@ -169,9 +180,18 @@ const ItemColor = styled.div`
 `
 const StatusContainer = styled.div`
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     font-weight: bold;
 `
 const SpecialP = styled.div`
-    margin-left: 90px;
+    margin-left: 110px;
+`
+const FunctionP = styled.div`
+    width: 10px;
+    height: 10px;
+    color: orange;
+    &:hover{
+        cursor: pointer;
+        opacity: 0.8;
+    }
 `

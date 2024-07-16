@@ -3,11 +3,12 @@ import { mainColor } from "../../constants/colors"
 import { useSentinel } from "../../contexts/SentinelContext";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/69012384.png"
+import axios from "axios";
 
 export default function NavBar() {
 
     const navigate = useNavigate();
-    const {setSelectedSentinel} = useSentinel();
+    const {setSelectedSentinel, setNotifications} = useSentinel();
 
     return (
         <NavBarItem>
@@ -15,6 +16,15 @@ export default function NavBar() {
             <Title onClick={()=>{
                 navigate(`/`);
                 setSelectedSentinel(undefined);
+                const promise = axios.get(process.env.REACT_APP_API_BASE_URL + '/notification');
+                promise.then((res) => {
+                    //console.log(res.data[0]);
+                    setNotifications(res.data);
+                });
+            
+                promise.catch((err) => {
+                    console.log('err', err.response.data);
+                });
                 }}>CMSS Tracking: Sentinels </Title>
         </NavBarItem>
     )

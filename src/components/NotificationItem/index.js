@@ -64,7 +64,7 @@ export default function NotificationItem({notification}) {
                     <img src={logo} height={"20px"} width={"20px"} alt={""} />
                     <p>{dayjs(notification.server_timestamp).format('DD/MM - HH:mm:ss')}</p>
                     <p>{sentinel.vehicle}</p>
-                    <p>{notification.remote.didDocument.id}</p>
+                    <AlignP>{notification.remote.didDocument.id}</AlignP>
                     <p>{notification.notification_object.events[0].type}</p>
                     <p>{notification.notification_object.events[0].accuracy}</p>
                     
@@ -77,8 +77,7 @@ export default function NotificationItem({notification}) {
 
 const StatusContainer = styled.div`
     display: flex;
-    justify-content: space-around;
-
+    justify-content: space-between;
 `
 const ItemSeparator = styled.div`
     height: 3px;
@@ -93,4 +92,8 @@ const HoverDiv = styled.div`
         cursor: pointer;
     }
 
+`
+const AlignP = styled.div`
+    width: 20%;
+    display: flex;
 `

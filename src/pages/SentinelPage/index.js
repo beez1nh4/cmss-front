@@ -37,6 +37,9 @@ export default function SentinelPage() {
         <>
             <NavBar color={color} />
             <Content>
+                <DisplayContainer>
+                <p>teste</p>
+                </DisplayContainer>
             </Content>
         </>
 
@@ -52,6 +55,7 @@ const Content = styled.div`
 `
 const DisplayContainer = styled.div`
     display: block;
+    background-color: white;
 
     @media (max-width: 900px) {
       height: calc(100vh - 80px);

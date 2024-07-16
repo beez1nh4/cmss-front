@@ -30,7 +30,7 @@ export default function SentinelDisplay() {
             //console.log(trafficLight)
             setSelectedSentinel(sentinel);
         }
-    }, [selectedSentinel, location.pathname, setSelectedSentinel, sentinels])
+    }, [])
     return (
 
 
@@ -38,7 +38,7 @@ export default function SentinelDisplay() {
             <NavBar color={color} />
             <Content>
             <DisplayContainer>
-
+                <p>ola</p>
             </DisplayContainer>
             </Content>
         </>
@@ -55,6 +55,7 @@ const Content = styled.div`
 `
 const DisplayContainer = styled.div`
     display: block;
+    background-color: white;
 
     @media (max-width: 900px) {
       height: calc(100vh - 80px);
