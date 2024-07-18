@@ -1,46 +1,52 @@
 import React, { Component } from 'react';
 import CanvasJSReact from '@canvasjs/react-charts';
+import { useSentinel } from '../../../contexts/SentinelContext';
+import { addColorSet } from '@canvasjs/charts';
 //var CanvasJSReact = require('@canvasjs/react-charts');
  
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+CanvasJS.addColorSet('customColorSet', ['#F7931E']);
+
  
-export class PedestrianChart extends React.Component {
-	render() {
+export default function NotificationChart() {
+    const {notificationWeek} = useSentinel();
+
 		const options = {
 			animationEnabled: true,
 			exportEnabled: true,
 			theme: "light2", // "light1", "dark1", "dark2"
+			colorSet: "customColorSet",
 			title:{
-				text: "Pedestres ao longo do dia"
+				text: "Notifications - week"
 			},
 			axisY: {
-				title: "Pedestres",
-				suffix: " pedestres"
+				title: "Quantity",
+				suffix: " notif."
 			},
 			axisX: {
-				title: "Hora do dia",
-				prefix: "hora ",
-				interval: 2
+				title: "Days",
+				prefix: "Date: ",
+				valueFormatString:  "D"			
 			},
 			data: [{
 				type: "line",
-				toolTipContent: "Hora {x}: {y} pedestres",
-				dataPoints: [
-					{ x: 1, y: 2 },
-					{ x: 2, y: 3 },
-					{ x: 3, y: 4 },
-					{ x: 4, y: 2 },
-					{ x: 5, y: 4 },
-					{ x: 6, y: 0 },
-					{ x: 7, y: 8 },
-					{ x: 8, y: 9 },
-					{ x: 9, y: 3 },
-					{ x: 10, y: 4 },
-					{ x: 11, y: 1 },
+				toolTipContent: "Date {label}: {y} notifications",
+				dataPoints:notificationWeek.notifications/*[
+					{ label: "14/07", y: 2 },
+					{ label: "15/07", y: 3 },
+					{ x: 16, y: 4 },
+					{ x: 17, y: 2 },
+					{ x: 18, y: 4 },
+					{ x: 19, y: 0 },
+					{ x: 20, y: 8 },
+					{ x: 21, y: 9 },
+					{ x: 22, y: 3 },
+					{ x: 23, y: 4 },
+				 	{ x: 11, y: 1 },
 					{ x: 12, y: 0 },
 					{ x: 13, y: 5 },
-/* 					{ x: 14, y: 0 },
+ 					{ x: 14, y: 0 },
 					{ x: 15, y: 6 },
 					{ x: 16, y: 0 },
 					{ x: 17, y: 9 },
@@ -49,10 +55,12 @@ export class PedestrianChart extends React.Component {
 					{ x: 20, y: 4 },
 					{ x: 21, y: 9 },
 					{ x: 22, y: 4 },
-					{ x: 23, y: 9 } */
-				]
+					{ x: 23, y: 9 }  
+				]*/
 			}]
 		}
+		
+
 		return (
 		<div>
 			<CanvasJSChart options = {options}
@@ -62,4 +70,4 @@ export class PedestrianChart extends React.Component {
 		</div>
 		);
 	}
-}
+

@@ -9,6 +9,7 @@ export const SentinelProvider = (props) => {
   const [selectedSentinel, setSelectedSentinel] = useState(undefined);
   const [getSentinel, setGetSentinel] = useState(false);
   const [notifications, setNotifications] = useState([]);
+  const [notificationWeek, setNotificationWeek] = useState({})
 
 /*   const getCurrent = useGetCurrent();
   console.log(getCurrent) */
@@ -25,7 +26,9 @@ export const SentinelProvider = (props) => {
       getSentinel,
       setGetSentinel,
       notifications,
-      setNotifications
+      setNotifications,
+      notificationWeek,
+      setNotificationWeek
       }}>
       {props.children}
     </SentinelsContext.Provider>

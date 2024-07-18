@@ -22,7 +22,6 @@ export default function Display2() {
     const refresh = () => { 
         const promise = axios.get(process.env.REACT_APP_API_BASE_URL + '/notification');
         promise.then((res) => {
-            //console.log(res.data[0]);
             setNotifications(res.data);
         });
     
@@ -34,7 +33,7 @@ export default function Display2() {
         const promise = axios.get(process.env.REACT_APP_API_BASE_URL + '/notification');
         //http://localhost:4000/notification/did:sw:3MCaQEkPdtfdiySyprzrym
         promise.then((res) => {
-            //console.log(res.data[0]);
+            console.log(res.data[0].notification_object.timestamp);
             setNotifications(res.data);
         });
     

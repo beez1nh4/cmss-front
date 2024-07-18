@@ -5,32 +5,30 @@ import { useSentinel } from "../../contexts/SentinelContext";
 import dayjs from "dayjs";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
+import axios from "axios";
+import NotificationChart from "./Chart";
 
 //page with sentinel info
 export default function SentinelPage() {
-    const { sentinels, selectedSentinel, setSelectedSentinel } = useSentinel();
+    const { sentinels, selectedSentinel, setNotificationWeek, notificationWeek } = useSentinel();
     const location = useLocation();
     const [color, setColor] = useState(notificationTypes[1].color)
     const [meaning, setMeaning] = useState(notificationTypes[1].meaning)
     const [date, setDate] = useState("")
     
     useEffect(() => {
-        if (selectedSentinel !== undefined) {
-            const notification = notificationTypes.find((type) => type.id === selectedSentinel.notificationType);
-            setColor(notification.color);
-            setMeaning(notification.meaning);
+        const promise = axios.get(process.env.REACT_APP_API_BASE_URL + '/notificationweek/2024-07-15');
+        promise.then((res) => {
+            console.log(res.data);
+            setNotificationWeek(res.data);
+        });
+    
+        promise.catch((err) => {
+            console.log('err', err.response.data);
+        });
+         
+    }, [])
 
-            const convertDate = dayjs.unix(selectedSentinel.timestamp);
-            const dateBR = dayjs(convertDate).locale('pt-BR').format('dddd, DD/MM, YYYY, HH:mm:ss');
-            setDate(dateBR[0].toUpperCase() + dateBR.substring(1));
-
-        } else {
-            const sentinelName = location.pathname.replace('/sentinel/', '')
-            const sentinel = sentinels.find((sentinel) => sentinel.name === sentinelName);
-            //console.log(sentinel)
-            setSelectedSentinel(sentinel);
-        }
-    }, [selectedSentinel, location.pathname, setSelectedSentinel, sentinels])
     return (
 
 
@@ -39,6 +37,7 @@ export default function SentinelPage() {
             <Content>
                 <DisplayContainer>
                 <p>teste</p>
+                <NotificationChart data={notificationWeek.notification}/>
                 </DisplayContainer>
             </Content>
         </>
@@ -55,10 +54,25 @@ const Content = styled.div`
 `
 const DisplayContainer = styled.div`
     display: block;
+    height: 86vh;
+    width: 600px;
+    padding: 25px;
+    margin: 20px;
+    margin-right: 20px;
     background-color: white;
+    border-radius: 15px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+
+    @media (max-width: 1050px) {
+      height: calc(100vh - 80px);
+      width: 60vh;
+      height: 40vh;
+      padding: 20px;
+      font-size: x-small;
+    }
 
     @media (max-width: 900px) {
-      height: calc(100vh - 80px);
+      height: calc(60vh - 20px);
       width: calc(80vh - 40px);
       padding: 20px;
     }
