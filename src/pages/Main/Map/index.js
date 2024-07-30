@@ -12,7 +12,7 @@ export class TrafficLightsMap extends React.Component {
         
 
         return (
-            <MapContainer center={position} zoom={15} scrollWheelZoom={true} style={{ height: '76.5vh', width: '112vh' }}>
+            <MapContainer center={position} zoom={15} scrollWheelZoom={true} style={{ height: '26.5vh', width: '52vh' }}>
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

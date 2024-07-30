@@ -8,6 +8,7 @@ import "dayjs/locale/pt-br";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import NotificationItem from "../../../components/NotificationItem";
+import Geohash from "../../../constants/geohash";
 
 export default function Display2() {
     const {sentinels, selectedSentinel, setSelectedSentinel, notifications, setNotifications} = useSentinel();
@@ -22,6 +23,7 @@ export default function Display2() {
     const refresh = () => { 
         const promise = axios.get(process.env.REACT_APP_API_BASE_URL + '/notification');
         promise.then((res) => {
+            
             setNotifications(res.data);
         });
     
@@ -33,7 +35,8 @@ export default function Display2() {
         const promise = axios.get(process.env.REACT_APP_API_BASE_URL + '/notification');
         //http://localhost:4000/notification/did:sw:3MCaQEkPdtfdiySyprzrym
         promise.then((res) => {
-            console.log(res.data[0].notification_object.timestamp);
+            //console.log(res.data[0].notification_object.timestamp);
+            console.log(Geohash.decode(res.data[0].notification_object.position));
             setNotifications(res.data);
         });
     
