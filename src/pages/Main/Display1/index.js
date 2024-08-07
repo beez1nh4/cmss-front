@@ -47,20 +47,17 @@ const DisplayContainer = styled.div`
     margin-right: 20px;
     background-color: white;
     border-radius: 15px;
+    overflow-y: scroll;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 
-    @media (max-width: 1050px) {
-      height: calc(100vh - 80px);
-      width: 60vh;
-      height: 40vh;
-      padding: 20px;
+    @media (max-width: 1350px) {
       font-size: x-small;
+      width: 400px;
+
     }
 
     @media (max-width: 900px) {
-      height: calc(60vh - 20px);
-      width: calc(80vh - 40px);
-      padding: 20px;
+      height: 80%/* calc(60vh - 20px) */;
     }
 `
 const Title = styled.div`
@@ -144,4 +141,5 @@ const StatusContainer = styled.div`
     display: flex;
     justify-content: space-between;
     font-weight: bold;
+    height: 20px;
 `

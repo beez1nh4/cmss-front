@@ -22,9 +22,9 @@ export default function SentinelItem({sentinel}) {
         <>
             <HoverDiv onClick={() => getNotificationByDidDocument(sentinel.didDocument)}>
             <StatusContainer>
-                    <p>{sentinel.sentinel_id}</p>
-                    <p>{sentinel.didDocument}</p>
-                    <p>{sentinel.vehicle}</p>
+                    <p style={{width: '5%'}}>{sentinel.sentinel_id}</p>
+                    <p style={{width: '55%'}}>{sentinel.didDocument}</p>
+                    <p style={{width: '12%'}}>{sentinel.vehicle}</p>
             </StatusContainer>
             <ItemSeparator/>
             </HoverDiv>
@@ -35,7 +35,7 @@ export default function SentinelItem({sentinel}) {
 const StatusContainer = styled.div`
     display: flex;
     justify-content: space-around;
-
+    height: 20px;
 `
 const ItemSeparator = styled.div`
     height: 3px;

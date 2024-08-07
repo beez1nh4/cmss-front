@@ -61,11 +61,11 @@ export default function Display2() {
                 
                 <StatusContainer>
                     <FunctionP onClick={()=>refresh()}>⟳</FunctionP>
-                    <p>Date & Time</p>
-                    <p>Id</p>
-                    <SpecialP>didDocument</SpecialP>
-                    <SpecialP>Type</SpecialP>
-                    <p>Confidence</p>
+                    <p style={{width: '12.5%'}}>Date & Time</p>
+                    <p style={{width: '10%'}}>Id</p>
+                    <p style={{width: '23.5%'}}>didDocument</p>
+                    <p style={{width: '7.5%'}}>Type</p>
+                    <p style={{width: '7.5%'}}>Confidence</p>
                 </StatusContainer>
                 <ItemSeparator/>
                 {notifications.map((notification)=> <NotificationItem key={notification._id} id={notification.id} notification={notification} ></NotificationItem>)}
@@ -75,31 +75,7 @@ export default function Display2() {
 }
 
 
-const DisplayContainer = styled.div`
-    display: block;
-    height: 86vh;
-    width: 600px;
-    padding: 25px;
-    margin: 20px;
-    margin-left: 0px;
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 
-    @media (max-width: 1050px) {
-      height: calc(100vh - 80px);
-      width: 60vh;
-      height: 40vh;
-      padding: 20px;
-      font-size: x-small;
-    }
-
-    @media (max-width: 900px) {
-      height: calc(60vh - 20px);
-      width: calc(80vh - 40px);
-      padding: 20px;
-    }
-`
 const Title = styled.div`
     font-size: 22px;
     margin-bottom: 10px;
@@ -107,56 +83,7 @@ const Title = styled.div`
     font-weight: bold;
     margin-bottom: 20px;
 `
-const MoreButton = styled.button`
-    height: 18%;
-    width: 95%;
-    padding: 10px;
-    margin: 20px;
-    margin-top: 5%;
-    font-family: "Lexend Deca", sans-serif;
-    background-color: ${mainColor};
-    color: white;
-    font-weight: bold;
-    font-size: 15px;
-    border: 0;
-    border-radius: 10px;
-    align-items: center;
-    justify-content: center;
-    &:hover {
-    background-color: lightblue;
-    cursor: pointer;
-    opacity: 0.7;
-    }
-    @media (max-width: 1050px) {
-      font-size: x-small;
-    }
-`
-const BackButton = styled.button`
-    height: 15%;
-    width: 95%;
-    padding: 10px;
-    margin: 20px;
-    margin-top: 2%;
-    font-family: "Lexend Deca", sans-serif;
-    background-color: ${mainColor};
-    color: white;
-    font-weight: bold;
-    font-size: 15px;
-    margin-bottom: 20px;
-    border: 0;
-    border-radius: 10px;
-    align-items: center;
-    justify-content: center;
-    &:hover {
-    background-color: lightblue;
-    cursor: pointer;
-    opacity: 0.7;
-    }
 
-    @media (max-width: 1050px) {
-      font-size: small;
-    }
-`
 const ItemSeparator = styled.div`
     margin-top: 5px;
     margin-bottom: 5px;
@@ -164,25 +91,21 @@ const ItemSeparator = styled.div`
     width: 100%;
     background-color: #f5f5f5;
 `
-const ItemColor = styled.div`
 
-    @keyframes blinker {
-        50% {
-            opacity: 0;
-        }
-    }
-    width: 20px;
-    height: 20px;
-    margin-right: 30px;
-    background: ${props => props.color};
-    border-radius: 12px;
-    border: 0;
-    animation: blinker 1s linear infinite;
-`
 const StatusContainer = styled.div`
     display: flex;
     justify-content: space-between;
     font-weight: bold;
+    @media (max-width: 1750px) {
+      padding: 20px;
+      font-size: small;
+    }
+
+    @media (max-width: 900px) {
+      height: calc(60vh - 20px);
+      padding: 20px;
+      font-size: x-small;
+    }
 `
 const SpecialP = styled.div`
     margin-left: 110px;

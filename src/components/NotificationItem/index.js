@@ -43,14 +43,16 @@ export default function NotificationItem({notification}) {
             title: `Sentinel ${sentinel.sentinel_id} - Vehicle ${sentinel.vehicle}`,
            
             html:   <><p style={{marginTop:'20px'}}><strong>Type:</strong> {notification.notification_object.events[0].type}</p>
-
+            
             <p style={{marginTop:'10px'}}><strong>Value:</strong> {plate}</p>
 
             <p style={{marginTop:'20px', marginBottom: '20px'}}><strong>Confidence:</strong> {notification.notification_object.events[0].accuracy}</p>
 
             <img src={sensor} style={{height:'30px'}} alt="sensor_img"/>
             <p style={{marginTop:'20px'}}><strong>Sensor type:</strong> {notification.notification_object.events[0].triggered_sensors[0].type}</p>
-            <MapContainer center={Geohash.decode(notification.notification_object.position)} zoom={20} scrollWheelZoom={true} style={{ height: 30 + 'vh', width: 45 + 'vh'} }>
+            
+            
+            <MapContainer center={Geohash.decode(notification.notification_object.position)} zoom={20} scrollWheelZoom={true} style={{ height: '30vh', width: '99%'} }>
             <TileLayer
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -63,6 +65,7 @@ export default function NotificationItem({notification}) {
             </Popup></Marker>
         
             </MapContainer>
+            <p>Position: https://maps.google.com/?q={Geohash.decode(notification.notification_object.position)[0]},{Geohash.decode(notification.notification_object.position)[1]}</p>
         </>,
             confirmButtonColor: mainColor,
             allowOutsideClick:true,
@@ -82,12 +85,20 @@ export default function NotificationItem({notification}) {
             <HoverDiv onClick={() => searchSentinel(notification)}>
             <StatusContainer>
                     {/* <img src={sensor} height={"20px"} width={"20px"} alt={""} /> */}
-                    <img src={logo} height={"20px"} width={"20px"} alt={""} />
-                    <p>{dayjs(notification.server_timestamp).format('DD/MM - HH:mm:ss')}</p>
-                    <p>{sentinel.vehicle}</p>
+                    <img src={logo} height={'25px'} width={'25px'} marginRight={'10px'}alt={""} />
+                    <p style={{width: '12.5%'}}>{dayjs(notification.server_timestamp).format('DD/MM - HH:mm:ss')}</p>
+                    <p style={{width: '10%'}}>{sentinel.vehicle}</p>
                     <AlignP>{notification.remote.didDocument.id}</AlignP>
-                    <p>{notification.notification_object.events[0].type}</p>
-                    <p>{notification.notification_object.events[0].accuracy}</p>
+                    <p style={{width: '10%'}}>{notification.notification_object.events[0].type}</p>
+              {notification.notification_object.events[0].accuracy.toString().length === 5 &&
+                <p style={{width: '5%'}}>{notification.notification_object.events[0].accuracy}</p>
+              }
+               {notification.notification_object.events[0].accuracy.toString().length === 4 &&
+                <p style={{width: '5%'}}>{notification.notification_object.events[0].accuracy}0</p>
+              }
+              {notification.notification_object.events[0].accuracy.toString().length === 2 &&
+                <p style={{width: '5%'}}>{notification.notification_object.events[0].accuracy}.00</p>
+              }     
                     
             </StatusContainer>
             <ItemSeparator/>
@@ -99,6 +110,17 @@ export default function NotificationItem({notification}) {
 const StatusContainer = styled.div`
     display: flex;
     justify-content: space-between;
+    height: 80%;
+
+    @media (max-width: 1350px) {
+      font-size: small;
+    }
+
+    @media (max-width: 1350px) {
+      font-size: x-small;
+    }
+
+    
 `
 const ItemSeparator = styled.div`
     height: 3px;
@@ -115,6 +137,16 @@ const HoverDiv = styled.div`
 
 `
 const AlignP = styled.div`
-    width: 20%;
     display: flex;
+    width: 25%;
+    @media (max-width: 1750px) {
+      height: 80%;
+      font-size: small;
+    }
+    @media (max-width: 1550px) {
+      font-size: x-small;
+    }
+    @media (max-width: 900px) {
+      display: none;
+    }
 `
