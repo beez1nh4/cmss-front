@@ -36,7 +36,6 @@ export default function Display2() {
         //http://localhost:4000/notification/did:sw:3MCaQEkPdtfdiySyprzrym
         promise.then((res) => {
             //console.log(res.data[0].notification_object.timestamp);
-            console.log(Geohash.decode(res.data[0].notification_object.position));
             setNotifications(res.data);
         });
     
